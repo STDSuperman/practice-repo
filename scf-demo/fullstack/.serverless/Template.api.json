@@ -1,0 +1,18 @@
+{
+  "functionName": "tencent-fullstack-vue-api",
+  "functionOutputs": {
+    "Name": "tencent-fullstack-vue-api",
+    "Runtime": "Nodejs8.9",
+    "Handler": "serverless-handler.handler",
+    "MemorySize": 128,
+    "Timeout": 3,
+    "Region": "ap-guangzhou",
+    "Namespace": "default",
+    "Description": "This is a function created by serverless component",
+    "layers": []
+  },
+  "region": "ap-guangzhou",
+  "apiGatewayServiceId": "service-ey43eciq",
+  "url": "https://service-ey43eciq-1257398419.gz.apigw.tencentcs.com/release/",
+  "cns": []
+}

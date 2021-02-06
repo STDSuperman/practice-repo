@@ -1,0 +1,6 @@
+{
+  "components": {
+    "dashboard": "C:\\Users\\Administrator.DESKTOP-LQDRHRK\\.serverless\\components\\registry\\npm\\@serverless\\tencent-website@1.2.23\\node_modules\\@serverless\\tencent-website",
+    "api": "C:\\Users\\Administrator.DESKTOP-LQDRHRK\\.serverless\\components\\registry\\npm\\@serverless\\tencent-express@3.0.8\\node_modules\\@serverless\\tencent-express"
+  }
+}

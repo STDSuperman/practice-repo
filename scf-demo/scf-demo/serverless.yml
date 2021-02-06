@@ -1,0 +1,15 @@
+app: scf-demo
+component: scf
+name: scfdemo
+inputs:
+  name: '${name}-${stage}-${app}'
+  src: ./src
+  handler: index.main_handler
+  runtime: Nodejs10.15
+  region: ap-guangzhou
+  events:
+    - apigw:
+        parameters:
+          endpoints:
+            - path: /
+              method: GET

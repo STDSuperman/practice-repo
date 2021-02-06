@@ -1,0 +1,10 @@
+2020-11-17 00:12:54,139 INFO 19916 [egg:logger] init all loggers with options: {"dir":"D:\\Code\\egg-graphql-demo\\logs\\egg-graphql-","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"egg-graphql--web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2020-11-17 00:12:54,275 INFO 19916 [egg:core] dump config after load, 3ms
+2020-11-17 00:12:54,312 INFO 19916 [egg-watcher] Start watching: ["D:\\Code\\egg-graphql-demo\\app","D:\\Code\\egg-graphql-demo\\config","D:\\Code\\egg-graphql-demo\\mocks","D:\\Code\\egg-graphql-demo\\mocks_proxy","D:\\Code\\egg-graphql-demo\\app.js"]
+2020-11-17 00:12:54,312 INFO 19916 [egg-watcher] Start watching: "D:\\Code\\egg-graphql-demo\\app"
+2020-11-17 00:12:54,313 INFO 19916 [egg-watcher] Start watching: "D:\\Code\\egg-graphql-demo\\config"
+2020-11-17 00:12:54,313 INFO 19916 [egg-watcher] Start watching: "D:\\Code\\egg-graphql-demo\\mocks"
+2020-11-17 00:12:54,313 INFO 19916 [egg-watcher] Start watching: "D:\\Code\\egg-graphql-demo\\mocks_proxy"
+2020-11-17 00:12:54,313 INFO 19916 [egg-watcher] Start watching: "D:\\Code\\egg-graphql-demo\\app.js"
+2020-11-17 00:12:54,313 INFO 19916 [egg-watcher:agent] watcher start success
+2020-11-17 00:12:54,323 INFO 19916 [egg:core] dump config after ready, 4ms

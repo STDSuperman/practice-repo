@@ -1,0 +1,14 @@
+2020-11-17 00:12:54,970 INFO 18076 [egg:logger] init all loggers with options: {"dir":"D:\\Code\\egg-graphql-demo\\logs\\egg-graphql-","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"egg-graphql--web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2020-11-17 00:12:54,995 INFO 18076 [egg-multipart] stream mode enable
+2020-11-17 00:12:55,370 INFO 18076 [egg-static] starting static serve /public/ -> D:\Code\egg-graphql-demo\app\public
+2020-11-17 00:12:55,372 INFO 18076 [egg-security] use csrf middleware
+2020-11-17 00:12:55,373 INFO 18076 [egg-security] use methodnoallow middleware
+2020-11-17 00:12:55,374 INFO 18076 [egg-security] use noopen middleware
+2020-11-17 00:12:55,374 INFO 18076 [egg-security] use nosniff middleware
+2020-11-17 00:12:55,375 INFO 18076 [egg-security] use xssProtection middleware
+2020-11-17 00:12:55,375 INFO 18076 [egg-security] use xframe middleware
+2020-11-17 00:12:55,376 INFO 18076 [egg-security] use dta middleware
+2020-11-17 00:12:55,376 INFO 18076 [egg-security] compose 7 middlewares into one security middleware
+2020-11-17 00:12:55,382 INFO 18076 [egg:core] dump config after load, 3ms
+2020-11-17 00:12:55,391 INFO 18076 [egg-watcher:application] watcher start success
+2020-11-17 00:12:55,396 INFO 18076 [egg:core] dump config after ready, 3ms

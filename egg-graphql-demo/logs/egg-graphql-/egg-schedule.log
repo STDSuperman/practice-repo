@@ -1,0 +1,6 @@
+2020-11-17 00:12:54,994 INFO 18076 [egg-schedule]: register schedule D:\Code\egg-graphql-demo\node_modules\egg-multipart\app\schedule\clean_tmpdir.js
+2020-11-17 00:12:54,994 INFO 18076 [egg-schedule]: register schedule D:\Code\egg-graphql-demo\node_modules\egg-logrotator\app\schedule\clean_log.js
+2020-11-17 00:12:54,994 INFO 18076 [egg-schedule]: register schedule D:\Code\egg-graphql-demo\node_modules\egg-logrotator\app\schedule\rotate_by_file.js
+2020-11-17 00:12:55,400 INFO 19916 [Timer] D:\Code\egg-graphql-demo\node_modules\egg-multipart\app\schedule\clean_tmpdir.js next time will execute after 15424601ms at 2020-11-17 04:30:00.001
+2020-11-17 00:12:55,401 INFO 19916 [Timer] D:\Code\egg-graphql-demo\node_modules\egg-logrotator\app\schedule\clean_log.js next time will execute after 85624600ms at 2020-11-18 00:00:00.001
+2020-11-17 00:12:55,402 INFO 19916 [Timer] D:\Code\egg-graphql-demo\node_modules\egg-logrotator\app\schedule\rotate_by_file.js next time will execute after 85625599ms at 2020-11-18 00:00:01.001

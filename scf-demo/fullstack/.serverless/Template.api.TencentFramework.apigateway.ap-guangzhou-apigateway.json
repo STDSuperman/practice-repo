@@ -1,0 +1,22 @@
+{
+  "protocols": [
+    "https"
+  ],
+  "subDomain": "service-ey43eciq-1257398419.gz.apigw.tencentcs.com",
+  "environment": "release",
+  "region": "ap-guangzhou",
+  "service": {
+    "value": "service-ey43eciq",
+    "created": true
+  },
+  "apis": [
+    {
+      "path": "/",
+      "method": "ANY",
+      "apiId": {
+        "value": "api-ggrze35a",
+        "created": true
+      }
+    }
+  ]
+}

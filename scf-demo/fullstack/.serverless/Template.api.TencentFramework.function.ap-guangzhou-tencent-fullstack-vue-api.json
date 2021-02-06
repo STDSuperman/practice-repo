@@ -1,0 +1,16 @@
+{
+  "deployed": {
+    "Name": "tencent-fullstack-vue-api",
+    "Runtime": "Nodejs8.9",
+    "Handler": "serverless-handler.handler",
+    "MemorySize": 128,
+    "Timeout": 3,
+    "Region": "ap-guangzhou",
+    "Namespace": "default",
+    "Description": "This is a function created by serverless component",
+    "layers": []
+  },
+  "codeHash": "8ac2e84b75ff75d96124d380bc51ba55",
+  "Bucket": "sls-cloudfunction-ap-guangzhou-code",
+  "Key": "sls-cloudfunction-default-tencent-fullstack-vue-api-1605445255.zip"
+}

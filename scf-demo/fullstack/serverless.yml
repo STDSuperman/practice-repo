@@ -1,0 +1,34 @@
+# 项目名字
+name: tencent-fullstack-vue-app
+
+# 前端相关配置
+dashboard:
+  # 采用的serverless组件
+  component: '@serverless/tencent-website'
+  # 设置输入参数
+  inputs:
+    # 我们项目源代码配置
+    code:
+      # 部署的文件目录
+      src: dist
+      # 项目的根目录
+      root: front
+      # 部署之前执行的命令，这里用来先打包出dist目录，然后再将dist目录部署上去，也就是上面配置的src对应的目录
+      hook: npm run build
+    # 环境变量
+    env:
+      # 部署的路径
+      apiUrl: ${api.url}
+# 服务端相关配置
+api:
+  # 采用的serverless组件
+  component: '@serverless/tencent-express'
+  inputs:
+    # 部署上去的服务端目录
+    code: './api'
+    # 云函数名字
+    functionName: tencent-fullstack-vue-api
+    apigatewayConf:
+      # 协议
+      protocols:
+       - https
