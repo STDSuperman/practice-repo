@@ -13,7 +13,6 @@ export class CatsController {
 
   @Get()
   async findAll(): Promise<Cat[]> {
-    console.log(this.catsService);
     return this.catsService.findAll();
   }
 }
