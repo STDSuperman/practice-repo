@@ -14,7 +14,7 @@ export class AuthController {
         return of(await this.authService.login(user))
     }
 
-    @UseGuards(AuthGuard('jwt'))
+    @UseGuards(AuthGuard())
     @Get('/profile')
     async profile(@Query('userId') userId: string |number): Promise<Observable<Profile>> {
         return of(await this.authService.getProfile(userId));

@@ -5,9 +5,11 @@ import { CatsController } from './cats/cats.controller';
 import { CatsService } from './cats/cats.service';
 import { CatsMiddlewareClass } from './cats/cats.middleware'
 import AuthModule from './auth/auth.module';
+import UserModule from './user/user.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [AuthModule],
+  imports: [AuthModule, UserModule, TypeOrmModule.forRoot()],
   controllers: [AppController, CatsController],
   providers: [AppService, CatsService],
 })
