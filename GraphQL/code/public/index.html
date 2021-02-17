@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="queryData()">发起请求</button>
+    <script>
+        function queryData() {
+            const query = `
+                query ($username: String!) {
+                    account(username: $username) {
+                        name
+                        sex
+                        age
+                    }
+                    age,
+                    name
+                }
+            `
+
+            fetch('/graphql', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Accept": 'application/json'
+                },
+                body: JSON.stringify({
+                    query,
+                    variables: {
+                        username: "陌小路"
+                    }
+                })
+            }).then(res => console.log(res.json()));
+        }
+    </script>
+</body>
+</html>
