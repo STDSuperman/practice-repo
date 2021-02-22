@@ -11,9 +11,10 @@ import { JwtStrategy } from './jwt.strategy'
     imports: [
         PassportModule.register({defaultStrategy: 'jwt'}),
         JwtModule.register({
-        secret: secret,
-        signOptions: { expiresIn: `${10 * 60}s` },
-    })],
+            secret: secret,
+            signOptions: { expiresIn: `${10 * 60}s` },
+        })
+    ],
     controllers: [AuthController],
     providers: [AuthService, LocalStrategy, JwtStrategy]
 })
