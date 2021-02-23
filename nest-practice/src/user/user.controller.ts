@@ -10,7 +10,6 @@ export class UserController {
 
     @Get('/one')
     async getOne(@Query('id') id: number, @Res({passthrough: true}) res: Response, @Cookie('username') username) {
-        console.log(`当前进程${process.pid}`)
         const data = await this.userService.findOne(id);
         !username && res.cookie('username', data.username);
         return data;
