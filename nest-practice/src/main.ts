@@ -46,4 +46,8 @@ function start() {
   }
 }
 
-start();
+function startSingle() {
+  bootstrap();
+}
+
+startSingle();
