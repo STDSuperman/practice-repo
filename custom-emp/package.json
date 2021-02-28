@@ -1,0 +1,33 @@
+{
+  "name": "custom-emp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/preset-env": "^7.13.8",
+    "@vue/compiler-sfc": "^3.0.6",
+    "babel-loader": "^8.2.2",
+    "bundle-loader": "^0.5.6",
+    "css-loader": "^5.1.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.2.0",
+    "rimraf": "^3.0.2",
+    "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^8.0.17",
+    "vue-loader": "^15.9.6",
+    "vue-loader-v16": "^16.0.0-beta.5.4",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^5.24.2",
+    "webpack-chain": "^6.5.1",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.7.3"
+  },
+  "scripts": {
+    "dev:vue2": "webpack-cli serve --config ./build/webpack.config.vue2.js",
+    "dev:vue3": "webpack-cli serve --config ./build/webpack.config.vue3.js",
+    "clean": "rimraf dist"
+  }
+}

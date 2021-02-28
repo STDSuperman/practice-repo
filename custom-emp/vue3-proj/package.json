@@ -1,0 +1,16 @@
+{
+  "name": "vue3-proj",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
