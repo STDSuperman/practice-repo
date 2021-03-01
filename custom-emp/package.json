@@ -5,7 +5,6 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.13.8",
-    "@babel/preset-env": "^7.13.8",
     "@vue/compiler-sfc": "^3.0.6",
     "babel-loader": "^8.2.2",
     "bundle-loader": "^0.5.6",
@@ -29,5 +28,7 @@
     "dev:vue2": "webpack-cli serve --config ./build/webpack.config.vue2.js",
     "dev:vue3": "webpack-cli serve --config ./build/webpack.config.vue3.js",
     "clean": "rimraf dist"
+  },
+  "dependencies": {
   }
 }

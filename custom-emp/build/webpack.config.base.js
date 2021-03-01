@@ -15,21 +15,18 @@ config.resolve
 config.mode('development')
 
 config.module
+    .rule('js')
+        .test(/\.js$/)
+        .use('babel')
+            .loader('babel-loader')
+
+config.module
     .rule('bootstrap')
     .test(/bootstrap\.js$/)
         .use('bundle-loader')
             .loader('bundle-loader')
             .options({
                 lazy: true,
-            })
-
-config.module
-    .rule('js')
-        .test(/\.js$/)
-        .use('babel')
-            .loader('babel-loader')
-            .options({
-                presets: [['@babel/preset-env']]
             })
 
 config.module
