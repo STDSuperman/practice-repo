@@ -12,7 +12,7 @@ async function bootstrap() {
   app.use(AbTestAnalyze);
   const swaggerOptions = new DocumentBuilder()
     .setTitle('nest-start api doc')
-    .setDescription('这是一个简单的测试demo')
+    .setDescription('API文档')
     .setVersion('1.0')
     .addBearerAuth()
     .build();
