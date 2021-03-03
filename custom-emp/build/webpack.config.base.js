@@ -19,15 +19,42 @@ config.module
         .test(/\.js$/)
         .use('babel')
             .loader('babel-loader')
-
-config.module
-    .rule('bootstrap')
-    .test(/bootstrap\.js$/)
-        .use('bundle-loader')
-            .loader('bundle-loader')
             .options({
-                lazy: true,
+                presets: [
+                    [
+                      require('@babel/preset-env').default,
+                      {
+                        useBuiltIns: 'entry',
+                        debug: false,
+                        corejs: 3,
+                        bugfixes: true,
+                        exclude: ['transform-typeof-symbol'],
+                      },
+                    ]
+                  ],
+                  plugins: [
+                    [
+                      require('@babel/plugin-transform-runtime').default,
+                      {
+                        corejs: false,
+                        helpers: true,
+                        version: require('@babel/runtime/package.json').version,
+                        regenerator: true,
+                        useESModules: false,
+                        absoluteRuntime: false,
+                      },
+                    ]
+                  ]
             })
+
+// config.module
+//     .rule('bootstrap')
+//     .test(/bootstrap\.js$/)
+//         .use('bundle-loader')
+//             .loader('bundle-loader')
+//             .options({
+//                 lazy: true,
+//             })
 
 config.module
     .rule('ts')
