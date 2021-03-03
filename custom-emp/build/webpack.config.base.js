@@ -16,7 +16,7 @@ config.mode('development')
 
 config.module
     .rule('js')
-        .test(/\.js$/)
+        .test(/\.(js|tsx|ts)$/)
         .use('babel')
             .loader('babel-loader')
             .options({
@@ -30,7 +30,9 @@ config.module
                         bugfixes: true,
                         exclude: ['transform-typeof-symbol'],
                       },
-                    ]
+                    ],
+                    '@babel/preset-typescript',
+                    '@babel/preset-react'
                   ],
                   plugins: [
                     [
@@ -43,7 +45,9 @@ config.module
                         useESModules: false,
                         absoluteRuntime: false,
                       },
-                    ]
+                    ],
+                    [require('@babel/plugin-proposal-decorators').default, {legacy: true}],
+                    [require('@babel/plugin-proposal-class-properties').default, {loose: true}],
                   ]
             })
 
@@ -64,7 +68,7 @@ config.module
 
 config.module
     .rule('file')
-        .test(/\.png|\.jpg|\.jpeg|\.gif$/)
+        .test(/\.png|\.jpg|\.jpeg|\.gif|\.svg$/)
         .use('file')
             .loader('file-loader')
             .options({

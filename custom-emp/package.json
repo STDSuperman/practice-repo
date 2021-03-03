@@ -5,8 +5,12 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.13.8",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-proposal-decorators": "^7.13.5",
     "@babel/plugin-transform-runtime": "^7.13.9",
     "@babel/preset-env": "^7.13.9",
+    "@babel/preset-react": "^7.12.13",
+    "@babel/preset-typescript": "^7.13.0",
     "@vue/compiler-sfc": "^3.0.6",
     "babel-loader": "^8.2.2",
     "bundle-loader": "^0.5.6",
@@ -28,8 +32,13 @@
   },
   "scripts": {
     "dev:vue2": "webpack-cli serve --config ./build/webpack.config.vue2.js",
+    "build:vue2:dev": "webpack --config ./build/webpack.config.vue2.js",
+    "build:vue2:prod": "webpack --mode production --config ./build/webpack.config.vue2.js",
     "dev:vue3": "webpack-cli serve --config ./build/webpack.config.vue3.js",
+    "dev:react": "webpack-cli serve --config ./build/webpack.config.react.js",
     "clean": "rimraf dist"
   },
-  "dependencies": {}
+  "dependencies": {
+    "vuera": "^0.2.7"
+  }
 }

@@ -5,7 +5,7 @@ const baseConfig = require('./webpack.config.base')
 const VueLoaderPlugin = require('vue-loader-v16/dist/plugin').default
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 const config = new Config();
-const ProjectDir = path.resolve(__dirname, '../vue3-proj')
+const projectDir = path.resolve(__dirname, '../vue3-proj')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 
 config.merge(baseConfig);
@@ -26,7 +26,6 @@ config.plugin('vue')
     .use(VueLoaderPlugin)
 config.plugin('html')
     .use(htmlWebpackPlugin, [{
-        template: path.resolve(__dirname, '../index.html'),
         title: 'Vue2 Project'
     }])
 
