@@ -29,12 +29,26 @@ config.plugin('mf')
         filename: 'hello-world.js',
         exposes: {
             './HelloWorld': path.resolve(projectDir, './src/components/HelloWorld')
+        },
+        shared: {
+            vue: {
+                import: "vue",
+                shareKey: "vue",
+                shareScope: "default",
+                singleton: true
+            },
+            'ant-design-vue': {
+                import: "ant-design-vue",
+                shareKey: "ant-design-vue",
+                shareScope: "default",
+                singleton: true,
+            }
         }
     }])
 
 config.plugin('html')
     .use(htmlWebpackPlugin, [{
-        title: 'Vue2 Project'
+        template: path.resolve(projectDir, './index.html')
     }])
 
 module.exports = merge(config.toConfig(), baseConfig);

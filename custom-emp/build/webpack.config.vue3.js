@@ -26,7 +26,7 @@ config.plugin('vue')
     .use(VueLoaderPlugin)
 config.plugin('html')
     .use(htmlWebpackPlugin, [{
-        title: 'Vue2 Project'
+        template: path.resolve(projectDir, './index.html')
     }])
 
 config.plugin('mf')
