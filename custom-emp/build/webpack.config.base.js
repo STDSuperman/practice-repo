@@ -46,6 +46,7 @@ config.module
                         absoluteRuntime: false,
                       },
                     ],
+                    ["import", { "libraryName": "ant-design-vue", "libraryDirectory": "es", "style": "css" }],
                     [require('@babel/plugin-proposal-decorators').default, {legacy: true}],
                     [require('@babel/plugin-proposal-class-properties').default, {loose: true}],
                   ]
@@ -86,9 +87,9 @@ config.module
             .end()
 
 config.module
-    .rule('sass')
-        .test(/\.sass$/)
-        .use('sass')
+    .rule('scss')
+        .test(/\.scss$/)
+        .use('scss')
             .loader('sass-loader')
             .end()
         .pre()

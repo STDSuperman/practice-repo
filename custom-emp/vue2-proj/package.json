@@ -6,6 +6,7 @@
     "dev": "webpack --config ../build/webpack.config.vue2.ts"
   },
   "dependencies": {
+    "ant-design-vue": "^1.7.4",
     "vue": "^2.6.11"
   },
   "devDependencies": {},

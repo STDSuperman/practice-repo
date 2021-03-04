@@ -1,50 +1,47 @@
-import React, { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
-import('@v2hw/HelloWorld').then(component => {
-  console.log(component)
-})
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { VueWrapper } from "vuera";
+import VueHelloWorld from "@v2hw/HelloWorld";
+import styled from 'styled-components'
+import { Card } from "antd";
+const { Meta } = Card;
 
-// console.log(VueHelloWorld);
+const AppDiv = styled.div`
+  display: flex;
+  justify-content: space-around;
+`
+
+const ReactContainer = styled.div`
+  margin: 10px;
+  display: inline-block;
+  width: 240px;
+  height: 400px;
+`
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello + React!</p>
-        <p>
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
-  )
+	return (
+		<AppDiv>
+			<ReactContainer>
+				<Card
+					hoverable
+					style={{ width: 240 }}
+					cover={
+						<img
+							alt="example"
+							src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+						/>
+					}
+				>
+					<Meta
+						title="Hello World!"
+						description="我是React组件"
+					/>
+				</Card>
+			</ReactContainer>
+			<VueWrapper component={VueHelloWorld}></VueWrapper>
+		</AppDiv>
+	);
 }
 
-export default App
+export default App;
