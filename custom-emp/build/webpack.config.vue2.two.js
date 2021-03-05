@@ -32,6 +32,22 @@ config.plugin('mf')
         },
         remotes: {
             '@v2hw': 'vue2Project@http://localhost:5001/hello-world.js'
+        },
+        shared: {
+            vue: {
+                import: "vue",
+                shareKey: "vue",
+                shareScope: "default",
+                singleton: true,
+                eager: true
+            },
+            'ant-design-vue': {
+                import: "ant-design-vue",
+                shareKey: "ant-design-vue",
+                shareScope: "default",
+                singleton: true,
+                eager: true
+            }
         }
     }])
 

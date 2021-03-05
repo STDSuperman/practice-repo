@@ -35,7 +35,8 @@ config.plugin('mf')
                 import: "vue",
                 shareKey: "vue",
                 shareScope: "default",
-                singleton: true
+                singleton: true,
+                requiredVersion: '^2.6.11'
             },
             'ant-design-vue': {
                 import: "ant-design-vue",
