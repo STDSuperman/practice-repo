@@ -31,23 +31,22 @@ config.plugin('mf')
             './HelloWorld': path.resolve(projectDir, './src/components/HelloWorld')
         },
         remotes: {
-            '@v2hw': 'vue2Project@http://localhost:5001/hello-world.js'
+            '@v2hw': 'vue2Project@http://localhost:5001/hello-world.js',
+            '@library': 'Library@http://localhost:5005/library'
         },
         shared: {
             vue: {
                 import: "vue",
                 shareKey: "vue",
                 shareScope: "default",
-                singleton: true,
-                eager: true
+                singleton: true
             },
-            'ant-design-vue': {
-                import: "ant-design-vue",
-                shareKey: "ant-design-vue",
-                shareScope: "default",
-                singleton: true,
-                eager: true
-            }
+            // 'ant-design-vue': {
+            //     import: "ant-design-vue",
+            //     shareKey: "ant-design-vue",
+            //     shareScope: "default",
+            //     singleton: true
+            // }
         }
     }])
 

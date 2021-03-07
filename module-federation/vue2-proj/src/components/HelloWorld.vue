@@ -8,7 +8,9 @@
 			/>
 			<CardMeta title="Vue HelloWorld">
 				<template slot="description">
-					我是Vue组件！！！
+					{{msg || defaultMsg}}
+					<br>
+					<slot></slot>
 				</template>
 			</CardMeta>
 		</Card>
@@ -19,6 +21,11 @@
 import { Card } from 'ant-design-vue'
 export default {
 	name: "HelloWorld",
+	data() {
+		return {
+			defaultMsg: 'Vue2 default'
+		}
+	},
 	props: {
 		msg: String,
 	},

@@ -1,8 +1,10 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HelloWorld :msg="msg"/>
   <div id="vue2HW"></div>
-  <Vue2HelloWorld></Vue2HelloWorld>
+  <Vue2HelloWorld>
+    我是插槽
+  </Vue2HelloWorld>
   <div id="vue2Remote"></div>
   <dynamicHelloWorld></dynamicHelloWorld>
 </template>
@@ -15,6 +17,11 @@ import HelloWorld2 from '@v2hw/HelloWorld'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      msg: 'Welcome to Your Vue.js App'
+    }
+  },
   components: {
     HelloWorld,
     Vue2HelloWorld: vue2ToVue3(HelloWorld2, 'vue2HW'),

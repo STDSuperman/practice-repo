@@ -1,14 +1,41 @@
 <template>
-    <div class='hello-world'>
-        你好哇，这里是另一个Vue2项目
-    </div>
+	<div class="hello">
+		<Card hoverable style="width: 240px">
+			<img
+				slot="cover"
+				alt="example"
+				src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+			/>
+			<CardMeta title="Vue HelloWorld">
+				<template slot="description">
+					{{ msg }}
+				</template>
+			</CardMeta>
+		</Card>
+	</div>
 </template>
 
 <script>
+import { Card } from '@v2hw/ant-design-vue'
+// import { Card } from 'ant-design-vue'
 export default {
-    name: 'HelloWorld'
-}
+	name: "HelloWorld",
+	props: {
+		msg: String,
+	},
+  components: {
+    Card,
+    CardMeta: Card.Meta
+  }
+};
 </script>
 
-<style lang='less' scoped>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.hello {
+  width: 240px;
+  height: 400px;
+  display: inline-block;
+  margin: 10px;
+}
 </style>

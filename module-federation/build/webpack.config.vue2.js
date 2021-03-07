@@ -28,7 +28,9 @@ config.plugin('mf')
         name: 'vue2Project',
         filename: 'hello-world.js',
         exposes: {
-            './HelloWorld': path.resolve(projectDir, './src/components/HelloWorld')
+            './HelloWorld': path.resolve(projectDir, './src/components/HelloWorld'),
+            './ant-design-vue': path.resolve(projectDir, './src/utils/ant-design-vue'),
+            './vue': path.resolve(projectDir, './src/utils/vue')
         },
         shared: {
             vue: {
@@ -36,7 +38,8 @@ config.plugin('mf')
                 shareKey: "vue",
                 shareScope: "default",
                 singleton: true,
-                requiredVersion: '^2.6.11'
+                requiredVersion: '^2.6.11',
+                eager: true
             },
             'ant-design-vue': {
                 import: "ant-design-vue",
