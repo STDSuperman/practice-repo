@@ -36,6 +36,8 @@
     "dev:vue2": "webpack-cli serve --config ./build/webpack.config.vue2.js",
     "build:vue2:dev": "webpack --config ./build/webpack.config.vue2.js",
     "build:vue2:prod": "webpack --mode production --config ./build/webpack.config.vue2.js",
+    "build:vue2:two:dev": "webpack --config ./build/webpack.config.vue2.two.js",
+    "build:vue3:dev": "webpack --config ./build/webpack.config.vue3.js",
     "dev:vue3": "webpack-cli serve --config ./build/webpack.config.vue3.js",
     "dev:react": "webpack-cli serve --config ./build/webpack.config.react.js",
     "dev:vue2:two": "webpack-cli serve --config ./build/webpack.config.vue2.two.js",
