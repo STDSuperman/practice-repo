@@ -6,10 +6,11 @@ import { CatsService } from './cats/cats.service';
 import { CatsMiddlewareClass } from './cats/cats.middleware'
 import AuthModule from './auth/auth.module';
 import UserModule from './user/user.module';
+import UploadFileModule from './file-upload/file-upload.module'
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [AuthModule, UserModule, TypeOrmModule.forRoot()],
+  imports: [AuthModule, UserModule, TypeOrmModule.forRoot(), UploadFileModule],
   controllers: [AppController, CatsController],
   providers: [AppService, CatsService],
 })

@@ -6,6 +6,8 @@ import * as cluster from 'cluster'
 import * as os from 'os';
 import AbTestAnalyze from './common/utils/ab-test-analyze';
 
+process.send = process.send || function (): any {};
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(CookieParser());
