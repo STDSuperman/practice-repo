@@ -2,11 +2,11 @@
   <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld :msg="msg"/>
   <div id="vue2HW"></div>
-  <Vue2HelloWorld>
+  <Vue2HelloWorld msg="Vue2组件">
     我是插槽
   </Vue2HelloWorld>
   <div id="vue2Remote"></div>
-  <dynamicHelloWorld></dynamicHelloWorld>
+  <dynamicHelloWorld msg="远程组件"></dynamicHelloWorld>
 </template>
 
 <script>
