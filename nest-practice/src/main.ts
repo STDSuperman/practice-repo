@@ -5,6 +5,7 @@ import * as CookieParser from 'cookie-parser';
 import * as cluster from 'cluster'
 import * as os from 'os';
 import AbTestAnalyze from './common/utils/ab-test-analyze';
+import { WsAdapter } from '@nestjs/platform-ws';
 
 process.send = process.send || function (): any {};
 
@@ -12,6 +13,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(CookieParser());
   app.use(AbTestAnalyze);
+  app.useWebSocketAdapter(new WsAdapter(app))
   const swaggerOptions = new DocumentBuilder()
     .setTitle('nest-start api doc')
     .setDescription('API文档')
