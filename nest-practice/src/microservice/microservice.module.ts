@@ -5,6 +5,8 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 
 @Module({
     controllers: [MicroserviceController],
-    imports: [ClientsModule.register([{name: MATH_SERVICE, transport: Transport.TCP}])],
+    imports: [
+        ClientsModule.register([{name: MATH_SERVICE, transport: Transport.TCP}])
+    ],
 })
 export default class MicroserviceModule{}

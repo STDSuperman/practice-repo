@@ -24,21 +24,26 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, swaggerOptions);
-  SwaggerModule.setup('/doc', app, document)
-
-  // 微服务部分
-  app.connectMicroservice<MicroserviceOptions>({
-    transport: Transport.TCP,
-    options: {
-      retryAttempts: 5,
-      retryDelay: 5000
-    }
-  })
-
+  SwaggerModule.setup('/doc', app, document);
   await app.startAllMicroservicesAsync();
 
   await app.listen(3000);
   console.log(`Application is running on: ${await app.getUrl()}`);
+}
+
+// 微服务
+async function startMicroservices() {
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
+    transport: Transport.TCP,
+    options: {
+      host: 'localhost',
+      port: 3000,
+      retryAttempts: 5,
+      retryDelay: 5000
+    }
+  });
+  app.useWebSocketAdapter(new WsAdapter(app)) // websocket部分
+  app.listen(() => console.log('Microservice is listening'));
 }
 
 // 负载均衡调度
@@ -70,4 +75,5 @@ function startSingle() {
   bootstrap();
 }
 
-startSingle();
+// startSingle();
+startMicroservices();
