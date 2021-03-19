@@ -6,14 +6,17 @@ import * as cluster from 'cluster'
 import * as os from 'os';
 import AbTestAnalyze from './common/utils/ab-test-analyze';
 import { WsAdapter } from '@nestjs/platform-ws';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 process.send = process.send || function (): any {};
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.use(CookieParser());
-  app.use(AbTestAnalyze);
-  app.useWebSocketAdapter(new WsAdapter(app))
+  app.use(CookieParser()); // cookie处理
+  app.use(AbTestAnalyze); // abTest部分
+  app.useWebSocketAdapter(new WsAdapter(app)) // websocket部分
+
+  // 文档部分
   const swaggerOptions = new DocumentBuilder()
     .setTitle('nest-start api doc')
     .setDescription('API文档')
@@ -22,7 +25,20 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, swaggerOptions);
   SwaggerModule.setup('/doc', app, document)
+
+  // 微服务部分
+  app.connectMicroservice<MicroserviceOptions>({
+    transport: Transport.TCP,
+    options: {
+      retryAttempts: 5,
+      retryDelay: 5000
+    }
+  })
+
+  await app.startAllMicroservicesAsync();
+
   await app.listen(3000);
+  console.log(`Application is running on: ${await app.getUrl()}`);
 }
 
 // 负载均衡调度
