@@ -1,4 +1,11 @@
-import { Controller, Get, Redirect, Param, Query, Header } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Redirect,
+  Param,
+  Query,
+  Header,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 import { Observable, of } from 'rxjs';
 
@@ -21,8 +28,8 @@ export class AppController {
   redirectToRxData() {
     return {
       url: '/',
-      statusCode: 301
-    }
+      statusCode: 301,
+    };
   }
 
   @Get('/query')

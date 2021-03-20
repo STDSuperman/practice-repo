@@ -3,7 +3,7 @@
     "host": "localhost",
     "port": 3306,
     "username": "root",
-    "password": "110120",
+    "password": "110120qwe",
     "database": "nest",
     "entities": ["dist/**/*.entity{.ts,.js}"],
     "synchronize": true

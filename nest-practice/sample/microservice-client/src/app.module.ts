@@ -1,20 +1,22 @@
 import { Module } from '@nestjs/common';
-import MicroserviceController from './microservice.controller';
-import { MATH_SERVICE } from './microservice.constants';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 
 @Module({
-  controllers: [MicroserviceController],
   imports: [
     ClientsModule.register([
       {
-        name: MATH_SERVICE,
+        name: 'TEST_MICROSERVICE',
         transport: Transport.REDIS,
         options: {
+          retryAttempts: 5000,
           url: 'redis://localhost:6379',
         },
       },
     ]),
   ],
+  controllers: [AppController],
+  providers: [AppService],
 })
-export default class MicroserviceModule {}
+export class AppModule {}
