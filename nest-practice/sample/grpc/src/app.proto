@@ -3,8 +3,8 @@ syntax = "proto3";
 package Grpc;
 
 service GrpcService {
-    rpc findOne(HeroById) returns (Hero);
-    rpc findMany(stream HeroById) returns (stream Hero);
+    rpc grpcFindOne(HeroById) returns (Hero);
+    rpc grpcFindMany(stream HeroById) returns (stream Hero);
 }
 
 message HeroById {

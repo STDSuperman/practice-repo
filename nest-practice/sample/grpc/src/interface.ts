@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs';
 
 export interface GrpcService {
-  findOne(data: HeroById): Observable<Hero>;
-  findMany(stream: Observable<HeroById>): Observable<Hero>;
+  grpcFindOne(data: HeroById): Observable<Hero>;
+  grpcFindMany(stream: Observable<HeroById>): Observable<Hero>;
 }
 
 export interface HeroById {
