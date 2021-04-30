@@ -1,23 +1,12 @@
 {
   "version": 2,
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
+  "cli": { "defaultCollection": "@nrwl/react" },
   "defaultProject": "react-nx",
   "generators": {
     "@nrwl/react": {
-      "application": {
-        "style": "scss",
-        "linter": "eslint",
-        "babel": true
-      },
-      "component": {
-        "style": "scss"
-      },
-      "library": {
-        "style": "scss",
-        "linter": "eslint"
-      }
+      "application": { "style": "scss", "linter": "eslint", "babel": true },
+      "component": { "style": "scss" },
+      "library": { "style": "scss", "linter": "eslint" }
     }
   },
   "projects": {
@@ -70,13 +59,9 @@
         },
         "serve": {
           "executor": "@nrwl/web:dev-server",
-          "options": {
-            "buildTarget": "react-nx:build"
-          },
+          "options": { "buildTarget": "react-nx:build" },
           "configurations": {
-            "production": {
-              "buildTarget": "react-nx:build:production"
-            }
+            "production": { "buildTarget": "react-nx:build:production" }
           }
         },
         "lint": {
@@ -108,15 +93,30 @@
             "devServerTarget": "react-nx:serve"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "react-nx:serve:production"
-            }
+            "production": { "devServerTarget": "react-nx:serve:production" }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["apps/react-nx-e2e/**/*.{js,ts}"] }
+        }
+      }
+    },
+    "data": {
+      "root": "libs/data",
+      "sourceRoot": "libs/data/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/data/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/data"],
           "options": {
-            "lintFilePatterns": ["apps/react-nx-e2e/**/*.{js,ts}"]
+            "jestConfig": "libs/data/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
