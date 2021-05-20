@@ -14,6 +14,7 @@
   "projects": {
     "react-nx": { "tags": [] },
     "react-nx-e2e": { "tags": [], " ": ["react-nx"] },
-    "data": { "tags": [] }
+    "data": { "tags": [] },
+    "nest-nx": { "tags": [] }
   }
 }

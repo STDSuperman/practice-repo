@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { data } from '@nx-practice/data'
+import axios from 'axios';
 
 export function App() {
-  const [count, setCount] = useState(0);
+  const [message, setMessage] = useState(null);
+  axios('/api').then(res => {
+    setMessage(res.data.message);
+  })
   return (
     <div>
       <p>{data()}</p>
-      <p>{count}</p>
-      <button onClick={() => setCount(count + 1)}>+</button>
+      <p>{message}</p>
     </div>
   );
 }
