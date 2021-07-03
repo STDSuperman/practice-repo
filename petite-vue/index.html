@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<title>许嵩热门金曲鉴赏</title>
+        <link href="./index.css" rel="stylesheet">
+	</head>
+	<body>
+        <div v-scope>
+            <audio id='audio' :src="store.currentPlayUrl" autoplay></audio>
+        </div>
+        <template id="card-component">
+            <div class="col">
+                <div class="card">
+                  <img :src="item.al.picUrl" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">{{item.name}}</h5>
+                    <button type="button" :class="['btn', 'btn-outline-success', isPlay && 'active']" @click="handleClick">{{isPlay ? '暂停' : '播放'}}</button>
+                  </div>
+                </div>
+            </div>
+        </template>
+        <div class="row row-cols-1 row-cols-md-5 g-4">
+            <div v-for="item in store.musicList" v-scope="CardComponent({ item })"></div>
+        </div>
+		<script type="module">
+			import { createApp, reactive } from "https://unpkg.com/petite-vue@0.2.0/dist/petite-vue.es.js";
+
+            const store = reactive({
+                musicList: [],
+                currentPlayUrl: '',
+                audioDom: document.getElementById('audio'),
+                getTopMusicList() {
+                    axios('http://localhost:4000/artist/top/song?id=5771').then(res => {
+                        if (res.data.code === 200) {
+                            this.musicList = res.data.songs.reverse().slice(20);
+                        }
+                    })
+                }
+            })
+
+            function CardComponent(props = {}) {
+                return {
+                    $template: '#card-component',
+                    isPlay: false,
+                    item: props.item,
+                    playUrl: '',
+                    play() {
+                        if (this.playUrl) {
+                            this.isPlay = true;
+                            store.audioDom.play();
+                            return;
+                        }
+                        axios(`http://localhost:4000/song/url?id=${this.item.id}`).then(res => {
+                            if (res.data.code === 200) {
+                                this.playUrl = store.currentPlayUrl = res.data.data[0].url;
+                                this.isPlay = true;
+                                store.audioDom.play();
+                            }
+                        })
+                    },
+                    pause() {
+                        store.audioDom.pause();
+                        this.isPlay = false;
+                    },
+                    handleClick() {
+                        if (this.isPlay) {
+                            this.pause();
+                        } else {
+                            this.play(props.id)
+                        }
+                    }
+                }
+            }
+
+            store.getTopMusicList();
+
+			createApp({
+                CardComponent,
+                store
+            }).mount();
+		</script>
+	</body>
+</html>

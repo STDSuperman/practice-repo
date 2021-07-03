@@ -1,0 +1,13 @@
+body {
+    padding: 20px;
+    background-color: #BEE7E9;
+}
+.card .btn {
+    width: 100%;
+    display: inline-block;
+}
+.card .card-title {
+    font-family: '华文行楷';
+    font-size: 20px;
+    font-weight: 600;
+}
