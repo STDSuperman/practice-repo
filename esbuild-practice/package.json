@@ -1,0 +1,15 @@
+{
+  "name": "esbuild-practice",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsnd build.ts",
+    "build:dev": "tsnd --respawn -transpile-only build.ts"
+  },
+  "devDependencies": {
+    "esbuild": "^0.12.29",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.3"
+  }
+}
