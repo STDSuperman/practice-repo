@@ -7,10 +7,11 @@ class SkeletonClass {
   private target = document.body;
   private uselessElement = ['script'];
   private rectHeight = window.innerHeight;
-  private targetTagList = [
+  private normalTagList = [
     'div','p', 'span', 'li', 'a', 'header', 'footer', 'button',
     'code'
   ];
+  private formTagList = ['input', 'select', 'textarea', 'button'];
   private defaultBgColor = '#F6F8FA';
   private defaultColor = '#DCDCDC';
   constructor() {}
@@ -73,7 +74,7 @@ class SkeletonClass {
   }
 
   renderSkeleton(element: HTMLElement) {
-    Array.from(element.querySelectorAll(this.targetTagList.join(',')))
+    Array.from(element.querySelectorAll(this.normalTagList.join(',')))
       .forEach(node => {
         const hasBg = 
           this.getComputeStyle(node, 'background-color') !== 'rgba(0, 0, 0, 0)'
@@ -81,10 +82,22 @@ class SkeletonClass {
         if (hasBg) {
           this.renderBg(node as HTMLElement);
         }
-        this.getSerializeTagName(node) === 'button' && this.renderElement2Span(node);
         this.getSerializeTagName(node) === 'a' && this.handleATag(node);
         this.getSerializeTagName(node) === 'code' && this.renderElement2Span(node);
         this.renderText(node);
+      })
+    this.renderFormElement(this.target);
+  }
+
+  renderFormElement(element: Element) {
+    Array.from(element.querySelectorAll(this.formTagList.join(',')))
+      .forEach(node => {
+        node.setAttribute('style', `
+          color: transparent!important;
+          background: ${this.defaultBgColor}!important;
+          border: none!important;
+        `);
+        node.setAttribute('placeholder', '');
       })
   }
 
