@@ -7,7 +7,7 @@ class SkeletonClass {
   private target = document.body;
   private uselessElement = ['script'];
   private rectHeight = window.innerHeight;
-  private targetTagList = ['div', 'p', 'span', 'li', 'a', 'header', 'footer'];
+  private targetTagList = ['div', 'p', 'span', 'li', 'a', 'header', 'footer', 'button'];
   private defaultBgColor = '#F6F8FA';
   private defaultColor = '#DCDCDC';
   constructor() {}
@@ -78,10 +78,27 @@ class SkeletonClass {
         if (hasBg) {
           this.renderBg(node as HTMLElement);
         }
+        this.getSerializeTagName(node) === 'button' && this.renderButton(node);
+        this.getSerializeTagName(node) === 'a' && this.handleATag(node);
         this.renderText(node);
       })
   }
+
+  handleATag(element: Element) {
+    element.removeAttribute('href');
+  }
+
+  getSerializeTagName(element: Element) {
+    return element.tagName.toLowerCase();
+  }
   
+  renderButton(element: Element) {
+    const div = document.createElement('div');
+    div.innerHTML = element.innerHTML;
+    element.parentNode.replaceChild(div, element);
+    this.renderSkeleton(div);
+  }
+
   renderBg(element: HTMLElement) {
     element.style.background = this.defaultBgColor;
   }
@@ -107,10 +124,13 @@ class SkeletonClass {
     return `
       background-image: linear-gradient(
         transparent ${firstColorPoint}%, ${this.defaultColor} 0,
-        ${this.defaultColor} ${secondColorPoint}%, transparent 0);
-      color: transparent;
-      background-size: 100% ${lineHeight}px;
-      position: 'relative';
+        ${this.defaultColor} ${secondColorPoint}%, transparent 0)!important;;
+      color: transparent!important;;
+      background-size: 100% ${lineHeight}px!important;;
+      position: 'relative'!important;;
+      border: none!important;
+      pointer-events: none!important;
+      outline: none!important;
     `
   }
 
