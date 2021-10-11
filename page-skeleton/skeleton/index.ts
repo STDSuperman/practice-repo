@@ -7,7 +7,10 @@ class SkeletonClass {
   private target = document.body;
   private uselessElement = ['script'];
   private rectHeight = window.innerHeight;
-  private targetTagList = ['div', 'p', 'span', 'li', 'a', 'header', 'footer', 'button'];
+  private targetTagList = [
+    'div','p', 'span', 'li', 'a', 'header', 'footer', 'button',
+    'code'
+  ];
   private defaultBgColor = '#F6F8FA';
   private defaultColor = '#DCDCDC';
   constructor() {}
@@ -78,8 +81,9 @@ class SkeletonClass {
         if (hasBg) {
           this.renderBg(node as HTMLElement);
         }
-        this.getSerializeTagName(node) === 'button' && this.renderButton(node);
+        this.getSerializeTagName(node) === 'button' && this.renderElement2Span(node);
         this.getSerializeTagName(node) === 'a' && this.handleATag(node);
+        this.getSerializeTagName(node) === 'code' && this.renderElement2Span(node);
         this.renderText(node);
       })
   }
@@ -92,11 +96,11 @@ class SkeletonClass {
     return element.tagName.toLowerCase();
   }
   
-  renderButton(element: Element) {
-    const div = document.createElement('div');
-    div.innerHTML = element.innerHTML;
-    element.parentNode.replaceChild(div, element);
-    this.renderSkeleton(div);
+  renderElement2Span(element: Element) {
+    const span = document.createElement('span');
+    span.innerHTML = element.innerHTML;
+    element.parentNode.replaceChild(span, element);
+    this.renderSkeleton(span);
   }
 
   renderBg(element: HTMLElement) {
