@@ -7,7 +7,8 @@
     "dev": "npm run start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:server": "webpack --config ./webpack.server.config.js"
   },
   "dependencies": {
     "@midwayjs/faas": "^1.0.0",
@@ -17,6 +18,8 @@
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.15.8",
+    "@babel/preset-typescript": "^7.15.0",
     "@midwayjs/faas-cli-plugin-midway-hooks": "^1.0.0",
     "@midwayjs/faas-dev-pack": "^1.0.0",
     "@midwayjs/hooks-loader": "^1.0.0",
@@ -27,9 +30,13 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "babel-loader": "^8.2.3",
     "react-app-rewired": "^2.1.6",
     "react-scripts": "3.4.1",
-    "typescript": "^3.9.7"
+    "ts-loader": "^9.2.6",
+    "typescript": "^3.9.7",
+    "webpack": "4.38.0",
+    "webpack-cli": "3.3.6"
   },
   "midway-integration": {
     "tsCodeRoot": "src/apis",

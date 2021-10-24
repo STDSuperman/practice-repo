@@ -33,3 +33,7 @@ export async function sendMessage(message: string) {
     method: useMethod(),
   };
 }
+
+export async function getHello() {
+  return hello();
+}
