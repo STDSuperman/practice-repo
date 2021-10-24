@@ -3,8 +3,9 @@
 service: midway-faas-react-demo
 
 provider:
-  name: aliyun # tencent
+  name: aliyun # tencent,aliyun
   runtime: nodejs10
+  serviceId: service-23n7uh58 # used for tencent
 
 plugins:
   - npm::@midwayjs/faas-cli-plugin-midway-hooks
