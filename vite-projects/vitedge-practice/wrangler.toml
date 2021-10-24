@@ -1,0 +1,23 @@
+name = "vitedge-react"
+type = "javascript"
+account_id = "2750556766@qq.com"
+workers_dev = true
+route = ""
+zone_id = ""
+compatibility_date = "2021-10-24"
+
+kv_namespaces = [
+  { binding = "TEST_NAMESPACE1", id = "<ignored>", preview_id = "<ignored>" },
+  { binding = "TEST_NAMESPACE2", id = "<ignored>", preview_id = "<ignored>" }
+]
+
+[site]
+bucket = "dist/client"
+entry-point = "."
+
+[build]
+command = ""
+watch_dir = "dist/worker"
+
+[build.upload]
+format = "service-worker"
