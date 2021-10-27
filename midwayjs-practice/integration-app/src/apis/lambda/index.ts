@@ -34,6 +34,6 @@ export async function sendMessage(message: string) {
   };
 }
 
-export async function getHello() {
+export async function gethello() {
   return hello();
 }

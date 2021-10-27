@@ -8,11 +8,11 @@ export default withController(
     middleware: ['fmw:staticFile'],
   },
   async () => {
-    return 'Building... Please refresh this page later.';
+    return 'xxxx'
   }
 );
 
-// export const renderSsrPage =  async () => {
+// const renderSsrPage =  async () => {
 //   const element = React.createElement(ReactApp);
 //   const content = ReactDOMServer.renderToString(element);
 //   return content;
