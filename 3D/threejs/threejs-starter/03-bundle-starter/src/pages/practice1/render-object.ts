@@ -58,10 +58,49 @@ export const renderTextureCube = (scene: THREE.Scene) => {
     20, 20,
     0, 20
   ]);
-  geometry.setAttribute('uv', new THREE.BufferAttribute(vertices, 4))
-  console.log(geometry)
-  const texture = new THREE.TextureLoader().load('images/1.jpg');
-  const material = new THREE.MeshLambertMaterial({ color: 0x000000 });
-  const mesh = new THREE.Mesh(geometry, material);
-  scene.add(mesh);
+  geometry.setAttribute('uv', new THREE.BufferAttribute(vertices, 2))
+  geometry.setAttribute('position', new THREE.BufferAttribute(new window.Float32Array([
+    0, 0, 0,
+    20, 0, 0,
+    0, 0, 20,
+    20, 0, 20
+  ]), 3))
+  new THREE.TextureLoader().load('http://localhost:3000/images/1.jpg', (texture) => {
+    const material = new THREE.MeshBasicMaterial({ map: texture });
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+  });
+}
+
+// 渲染一个坐标轴
+export const renderCoordinate = (scene: THREE.Scene) => {
+  // 渲染 x 轴
+  renderLine(scene, [
+    0, 0, 0,
+    30, 0, 0
+  ], 0xfec3ff);
+  // 渲染 y 轴
+  renderLine(scene, [
+    0, 0, 0,
+    0, 30, 0
+  ], 0x00a591);
+  // 渲染 z 轴
+  renderLine(scene, [
+    0, 0, 0,
+    0, 0, 30
+  ], 0xff825e);
+}
+
+// 渲染一条线
+export const renderLine = (scene: THREE.Scene, vertices: number[], lineColor?: number) => {
+  const geometry = new THREE.BufferGeometry();
+  const gVertices = new window.Float32Array(
+    vertices ?? [
+      0, 0, 0,
+      20, 0, 0
+    ]
+  );
+  geometry.setAttribute('position', new THREE.BufferAttribute(gVertices, 3));
+  const line = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: lineColor ?? 0x001800, linewidth: 3 }));
+  scene.add(line);
 }

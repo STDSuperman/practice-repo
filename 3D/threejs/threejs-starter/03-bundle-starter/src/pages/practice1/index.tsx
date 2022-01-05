@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { useRef, useEffect } from 'react'
 import './index.less'
-import { renderBox, renderGridLine, renderTextureCube } from './render-object'
+import { renderBox, renderGridLine, renderTextureCube, renderCoordinate } from './render-object'
 import Stats from 'stats.js'
 
 export default () => {
@@ -23,8 +23,8 @@ export default () => {
     const width = renderDom?.current?.clientWidth || 100;
     const height = renderDom?.current?.clientHeight || 100;
     const camera = new THREE.PerspectiveCamera(100, width / height, 1, 10000);
-    camera.position.set(0, 30, 0);
-    // camera.up.set(0, 0, 1);
+    camera.position.set(0, 30, 4);
+    camera.up.set(0, 0, 1);
     camera.lookAt(0, 0, 0);
     return camera;
   }
@@ -55,8 +55,9 @@ export default () => {
     const stats = initStats();
 
     // const frameRender = renderBox(scene);
-    renderGridLine(scene);
+    // renderGridLine(scene);
     renderTextureCube(scene);
+    renderCoordinate(scene);
 
     const animate = () => {
       // frameRender();
