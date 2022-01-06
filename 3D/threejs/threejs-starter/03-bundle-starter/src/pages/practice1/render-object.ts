@@ -104,3 +104,30 @@ export const renderLine = (scene: THREE.Scene, vertices: number[], lineColor?: n
   const line = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: lineColor ?? 0x001800, linewidth: 3 }));
   scene.add(line);
 }
+
+// 以 canvas 作为纹理
+export const renderWithCanvas = (scene: THREE.Scene) => {
+  const canvas = document.createElement("canvas");
+  canvas.style.height = '100px';
+  canvas.style.width = '100px';
+  canvas.style.border = '1px solid black';
+  const context = canvas.getContext("2d");
+  if (!context) return;
+  document.body.appendChild(canvas);
+  let count = 0;
+  setInterval(() => {
+    context.clearRect(0, 0, 1000, 1000);
+    context.fillStyle = "red";
+    context.fillRect(0, 0, canvas.width, canvas.height)
+    context.fillStyle = "green";
+    context.textAlign = "left";
+    context.font = "60px '微软雅黑'";
+    context?.fillText(`${count++}`, 100, 100);
+    const geometry = new THREE.BoxGeometry(20, 20, 20);
+    const texture = new THREE.Texture(canvas);
+    texture.needsUpdate = true;
+    const material = new THREE.MeshBasicMaterial({map: texture});
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+  }, 1000);
+}
