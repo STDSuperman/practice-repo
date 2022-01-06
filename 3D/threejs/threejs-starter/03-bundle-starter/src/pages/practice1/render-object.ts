@@ -115,7 +115,8 @@ export const renderWithCanvas = (scene: THREE.Scene) => {
   if (!context) return;
   document.body.appendChild(canvas);
   let count = 0;
-  setInterval(() => {
+
+  const renderCanvas = () => {
     context.clearRect(0, 0, 1000, 1000);
     context.fillStyle = "red";
     context.fillRect(0, 0, canvas.width, canvas.height)
@@ -129,5 +130,14 @@ export const renderWithCanvas = (scene: THREE.Scene) => {
     const material = new THREE.MeshBasicMaterial({map: texture});
     const cube = new THREE.Mesh(geometry, material);
     scene.add(cube);
+  }
+  setInterval(() => {
+    renderCanvas();
   }, 1000);
+}
+
+// 渲染一个网格
+export const renderGrid = (scene: THREE.Scene) => {
+  const helper = new THREE.GridHelper(1000, 50);
+  scene.add(helper);
 }

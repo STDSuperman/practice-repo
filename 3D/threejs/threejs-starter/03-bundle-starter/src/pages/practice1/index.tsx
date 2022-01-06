@@ -6,7 +6,8 @@ import {
   renderGridLine,
   renderTextureCube,
   renderCoordinate,
-  renderWithCanvas
+  renderWithCanvas,
+  renderGrid
 } from './render-object'
 import Stats from 'stats.js'
 
@@ -30,7 +31,7 @@ export default () => {
     const height = renderDom?.current?.clientHeight || 100;
     const camera = new THREE.PerspectiveCamera(100, width / height, 1, 10000);
     camera.position.set(20, 30, 20);
-    camera.up.set(0, 0, 1);
+    // camera.up.set(0, 0, 1);
     camera.lookAt(0, 0, 0);
     return camera;
   }
@@ -65,6 +66,7 @@ export default () => {
     // renderTextureCube(scene);
     renderCoordinate(scene);
     renderWithCanvas(scene);
+    renderGrid(scene);
 
     const animate = () => {
       // frameRender();
