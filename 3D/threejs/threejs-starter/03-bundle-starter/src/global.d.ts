@@ -1,6 +1,6 @@
 declare interface Window {
   Float32Array: any;
-  OrbitControls: any;
+  chroma: any;
 }
 
 // disable-eslint-next-line: true

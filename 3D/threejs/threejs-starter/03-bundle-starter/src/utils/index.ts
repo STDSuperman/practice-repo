@@ -6,3 +6,8 @@ export const onWindowResize = (camera: PerspectiveCamera, renderer: Renderer) =>
   camera.updateProjectionMatrix();
   renderer.setSize( window.innerWidth, window.innerHeight );
 }
+
+// 序列化精度
+export const normalizePrecision = (num: number): number => {
+  return Math.abs(num) < 0.01 ? 0 : num;
+}
