@@ -73,7 +73,7 @@ export const renderTextureCube = (scene: THREE.Scene) => {
 }
 
 // 渲染一个坐标轴
-export const renderCoordinate = (scene: THREE.Scene) => {
+export const renderCoordinate = (scene: THREE.Scene | THREE.Group) => {
   // 渲染 x 轴
   renderLine(scene, [
     0, 0, 0,
@@ -92,7 +92,7 @@ export const renderCoordinate = (scene: THREE.Scene) => {
 }
 
 // 渲染一条线
-export const renderLine = (scene: THREE.Scene, vertices: number[], lineColor?: number) => {
+export const renderLine = (scene: THREE.Scene | THREE.Group, vertices: number[], lineColor?: number) => {
   const geometry = new THREE.BufferGeometry();
   const gVertices = new window.Float32Array(
     vertices ?? [

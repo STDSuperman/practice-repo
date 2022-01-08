@@ -1,8 +1,8 @@
 import './App.css'
-import Practice1 from './pages/practice1'
+import FPS from './pages/fps'
 
 function App() {
-  return <Practice1></Practice1>
+  return <FPS></FPS>
 }
 
 export default App

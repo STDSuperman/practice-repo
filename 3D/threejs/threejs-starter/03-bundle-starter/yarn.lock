@@ -819,6 +819,11 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.npmmirror.com/supports-preserve-symlinks-flag/download/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
+three-pointer-lock-controls@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/three-pointer-lock-controls/-/three-pointer-lock-controls-1.0.0.tgz#54ed4f5dcd83303355244316e2d55d5c76e19023"
+  integrity sha512-4NVBrTk3tdR0cpo2WgJXB22udfkZ7OXh+tOjIzgSfU3a89HHUODKl7eVs9oSTK/7Z/AXoKLHR3a32Hu4uem6EQ==
+
 three@^0.136.0:
   version "0.136.0"
   resolved "https://registry.npmmirror.com/three/download/three-0.136.0.tgz#b1504db021b46398ef468aa7849f3dcabb814f50"
