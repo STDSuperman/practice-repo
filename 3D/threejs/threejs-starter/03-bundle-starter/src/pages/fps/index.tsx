@@ -3,7 +3,7 @@ import * as THREE from 'three'
 import { useRef, useEffect } from 'react'
 import Stats from 'stats.js'
 import { renderCoordinate } from '../practice1/render-object'
-import { onWindowResize, normalizePrecision } from '../../utils'
+import { onWindowResize, normalizeDirection, setRandomColors } from '../../utils'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls'
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader'
@@ -27,18 +27,23 @@ export default () => {
   let moveRight = false
   let canJump = true
   let spaceUp = true
-  const velocity = new THREE.Vector3(0, 0, 0)
-  const direction = new THREE.Vector3(0, 0, 0)
+  const velocity = new THREE.Vector3()
+  const direction = new THREE.Vector3()
+  const rotation = new THREE.Vector3() //当前的相机朝向
   const upSpeed = 200
   const speed = 500
-  const rotation = new THREE.Vector3() //当前的相机朝向
   const horizontalRaycaster = new THREE.Raycaster(
     new THREE.Vector3(),
     new THREE.Vector3(),
     0,
     10
   )
-  const downRaycaster = new THREE.Raycaster(new THREE.Vector3(), new THREE.Vector3( 0, -1, 0), 0, 10);
+  const downRaycaster = new THREE.Raycaster(
+    new THREE.Vector3(),
+    new THREE.Vector3(0, -1, 0),
+    0,
+    10
+  )
   const helperGroup = new THREE.Group()
 
   const initRenderer = () => {
@@ -47,8 +52,8 @@ export default () => {
     const render = new THREE.WebGLRenderer({
       antialias: true
     })
-    render.setPixelRatio( window.devicePixelRatio );
-    render.sortObjects = false;
+    render.setPixelRatio(window.devicePixelRatio)
+    render.sortObjects = false
     render.setSize(width, height)
     render.setClearColor(0x8abcd1)
     if (document.querySelector('canvas')) render
@@ -59,9 +64,7 @@ export default () => {
   const initCamera = () => {
     const height = fpsContainerRef.current?.clientHeight || 100
     const width = fpsContainerRef.current?.clientWidth || 100
-    const camera = new THREE.PerspectiveCamera(45, width / height, 1, 1000)
-    camera.position.set(0, 0, 0)
-    camera.lookAt(0, 0, 0)
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000)
     return camera
   }
 
@@ -70,7 +73,7 @@ export default () => {
     fpsGroup.add(amLight)
 
     const pointLight = new THREE.PointLight(0xffffff)
-    pointLight.position.set(0, 10, 0)
+    pointLight.position.set(0, 150, 0)
     fpsGroup.add(pointLight)
     pointLight.castShadow = true
   }
@@ -87,11 +90,11 @@ export default () => {
     render: THREE.Renderer
   ) => {
     const controls = new PointerLockControls(camera, render.domElement)
-    const control = controls.getObject()
-    control.position.y = 50
-    control.position.x = 100
-    fpsGroup.add(control)
-    return control
+    const controlObject = controls.getObject()
+    controlObject.position.y = 50
+    controlObject.position.x = 100
+    fpsGroup.add(controlObject)
+    return controls
   }
 
   const initModel = () => {
@@ -102,23 +105,42 @@ export default () => {
       objLoader.setMaterials(material)
       objLoader.setPath('/models/')
       objLoader.load('city.obj', object => {
+        //设置颜色的取值范围
+        const scale = window.chroma.scale(['yellow', '008ae5']);
+        // setRandomColors(object, scale)
+        object.scale.set(5, 5, 5);
         fpsGroup.add(object)
       })
     })
 
     //添加辅助线
-    const up = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(), 10, 0x00ff00);
-    const horizontal = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(), 10, 0x00ffff);
-    const down = new THREE.ArrowHelper(new THREE.Vector3(0, -1, 0), new THREE.Vector3(), 10, 0xffff00);
+    const up = new THREE.ArrowHelper(
+      new THREE.Vector3(0, 1, 0),
+      new THREE.Vector3(),
+      10,
+      0x00ff00
+    )
+    const horizontal = new THREE.ArrowHelper(
+      new THREE.Vector3(1, 0, 0),
+      new THREE.Vector3(),
+      10,
+      0x00ffff
+    )
+    const down = new THREE.ArrowHelper(
+      new THREE.Vector3(0, -1, 0),
+      new THREE.Vector3(),
+      10,
+      0xffff00
+    )
 
-    helperGroup.add(up);
-    helperGroup.add(horizontal);
-    helperGroup.add(down);
+    helperGroup.add(up)
+    helperGroup.add(horizontal)
+    helperGroup.add(down)
 
-    scene.add(helperGroup);
+    scene.add(helperGroup)
   }
 
-  const initKeyControl = (control: THREE.Camera) => {
+  const initKeyControl = (control: PointerLockControls) => {
     const onKeyDown = (event: KeyboardEvent) => {
       switch (event.keyCode) {
         case 38: // up
@@ -170,6 +192,7 @@ export default () => {
     document.addEventListener('keydown', onKeyDown, false)
     document.addEventListener('keyup', onKeyUp, false)
     return () => {
+      const controlObject = control.getObject();
       direction.z = +moveForward - +moveBackward
       direction.x = +moveLeft - +moveRight
       direction.normalize()
@@ -178,14 +201,18 @@ export default () => {
       velocity.z -= velocity.z * 10.0 * delta
       velocity.y -= 9.8 * 100.0 * delta // 默认下降的速度
       //将法向量的值归一化
-      direction.normalize();
+      direction.normalize()
 
-      helperGroup.position.set(control.position.x,control.position.y,control.position.z);
+      helperGroup.position.set(
+        controlObject.position.x,
+        controlObject.position.y,
+        controlObject.position.z
+      )
 
       // 碰撞检测
       rotation
-        .copy(control.getWorldDirection(new THREE.Vector3()))
-        .multiply(new THREE.Vector3(-1, 0, -1))
+        .copy(controlObject.getWorldDirection(new THREE.Vector3()))
+        .multiply(new THREE.Vector3(1, 0, 1))
       const m = new THREE.Matrix4()
 
       // 大于零说明是往前
@@ -215,43 +242,51 @@ export default () => {
 
       // 设置 rotation 的方向
       rotation.applyMatrix4(m)
-      horizontalRaycaster.set(control.position, rotation);
-      const horizontalIntersections = horizontalRaycaster.intersectObjects( scene.children, true);
-      const horOnObject = horizontalIntersections.length > 0;
+      // normalizeDirection(rotation)
+      // console.log(controlObject.getWorldDirection(new THREE.Vector3()))
+      horizontalRaycaster.set(controlObject.position, rotation)
+      const horizontalIntersections = horizontalRaycaster.intersectObjects(
+        scene.children,
+        true
+      )
+      const horOnObject = horizontalIntersections.length > 0
 
       // 如果没有碰到东西才能继续走
       if (!horOnObject) {
-        if (moveForward || moveBackward) velocity.z -= direction.z * speed * delta
+        if (moveForward || moveBackward)
+          velocity.z -= direction.z * speed * delta
         if (moveLeft || moveRight) velocity.x -= direction.x * speed * delta
       }
 
-      velocity.x = normalizePrecision(velocity.x);
-      velocity.y = normalizePrecision(velocity.y);
-      velocity.z = normalizePrecision(velocity.z);
+      // normalizeDirection(velocity)
 
-      if (control.position.y + velocity.y * delta < 10) velocity.y = 0
+      // if (controlObject.position.y + velocity.y * delta <= 10) velocity.y = 0
 
       // 竖直方向碰撞检测
       // 复制相机的位置
-      downRaycaster.ray.origin.copy( control.position );
-      //获取相机靠下10的位置
-      downRaycaster.ray.origin.y -= 10;
+      downRaycaster.ray.origin.copy(controlObject.position)
+      //获取相机靠下1的位置
+      // downRaycaster.ray.origin.y -= 10
       //判断是否停留在了立方体上面
-      const intersections = downRaycaster.intersectObjects( scene.children, true);
-      const onObject = intersections.length > 0;
+      const intersections = downRaycaster.intersectObjects(fpsGroup.children, true)
+      const onObject = intersections.length > 0
       //判断是否停在了立方体上面
-      if ( onObject) {
+      if (onObject === true) {
         velocity.y = Math.max( 0, velocity.y );
         canJump = true;
       }
+      // console.log(controlObject.position)
+      // console.log(controlObject.position, velocity.z * delta);
+      // controlObject.translateX(velocity.x * delta)
+      // controlObject.translateY(velocity.y * delta)
+      // controlObject.translateZ(velocity.z * delta)
+      control.moveForward(-velocity.z * delta);
+      control.moveRight(velocity.x * delta);
+      controlObject.position.y += velocity.y * delta;
 
-      control.translateX(velocity.x * delta)
-      control.translateY(velocity.y * delta)
-      control.translateZ(velocity.z * delta)
-
-      if (control.position.y < 10) {
+      if (controlObject.position.y < 10) {
         velocity.y = 0
-        control.position.y = 10
+        controlObject.position.y = 10
         canJump = true
       }
     }
@@ -293,7 +328,7 @@ export default () => {
       onWindowResize(camera, render)
       animate()
     })
-  })
+  }, [])
 
   const clickBlockPointer = (event: any) => {
     const target: HTMLElement = event.target
