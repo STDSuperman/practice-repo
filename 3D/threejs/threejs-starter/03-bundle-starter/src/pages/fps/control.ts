@@ -15,7 +15,10 @@ export const initControl = (
   return controls
 }
 
-export const initKeyControl = (control: PointerLockControls, fpsGroup: THREE.Scene | THREE.Group) => {
+export const initKeyControl = (
+  control: PointerLockControls,
+  fpsGroup: THREE.Scene | THREE.Group
+) => {
   let moveForward = false
   let moveLeft = false
   let moveBackward = false
@@ -27,7 +30,6 @@ export const initKeyControl = (control: PointerLockControls, fpsGroup: THREE.Sce
   const rotation = new THREE.Vector3() //当前的相机朝向
   const upSpeed = 200
   const speed = 500
-  const clock = new THREE.Clock()
   const horizontalRaycaster = new THREE.Raycaster(
     new THREE.Vector3(),
     new THREE.Vector3(),
@@ -90,12 +92,11 @@ export const initKeyControl = (control: PointerLockControls, fpsGroup: THREE.Sce
   }
   document.addEventListener('keydown', onKeyDown, false)
   document.addEventListener('keyup', onKeyUp, false)
-  return () => {
+  return (delta: number) => {
     const controlObject = control.getObject();
     direction.z = +moveForward - +moveBackward
     direction.x = +moveLeft - +moveRight
     direction.normalize()
-    const delta = clock.getDelta()
     velocity.x -= velocity.x * 10.0 * delta
     velocity.z -= velocity.z * 10.0 * delta
     velocity.y -= 9.8 * 100.0 * delta // 默认下降的速度

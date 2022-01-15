@@ -11,7 +11,7 @@ import { initControl, initKeyControl } from './control'
 export default (fpsContainerRef: RefObject<HTMLDivElement>) => {
   if (!fpsContainerRef) return;
   const scene = new THREE.Scene()
-
+  const clock = new THREE.Clock()
   const fpsGroup = new THREE.Group()
   const coordinateGroup = new THREE.Group()
   coordinateGroup.renderOrder = 1000
@@ -69,7 +69,7 @@ export default (fpsContainerRef: RefObject<HTMLDivElement>) => {
     return controls
   }
 
-  const start = () => {
+  const start = async () => {
     const render = initRenderer()
     const camera = initCamera()
     const control = initControl(camera, render, scene)
@@ -77,14 +77,16 @@ export default (fpsContainerRef: RefObject<HTMLDivElement>) => {
     const stats = initStats()
     initLight()
     // initCityModel(fpsGroup, camera)
-    loadPersonSkin(fpsGroup, camera);
+    const skinFrame = await loadPersonSkin(fpsGroup, camera);
     renderCoordinate(coordinateGroup)
     // const control = initOrbitControls(camera, render);
 
     const animate = () => {
+      const delta = clock.getDelta();
       stats.begin()
       render?.render(fpsGroup, camera)
-      frameRender()
+      frameRender(delta)
+      skinFrame(delta)
       requestAnimationFrame(animate)
       // control.update();
       stats.end()
