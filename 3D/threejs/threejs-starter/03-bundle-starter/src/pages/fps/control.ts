@@ -38,7 +38,7 @@ export const initKeyControl = (control: PointerLockControls, fpsGroup: THREE.Sce
     new THREE.Vector3(),
     new THREE.Vector3(0, -1, 0),
     0,
-    10
+    5
   )
   const onKeyDown = (event: KeyboardEvent) => {
     switch (event.keyCode) {
@@ -143,7 +143,6 @@ export const initKeyControl = (control: PointerLockControls, fpsGroup: THREE.Sce
       true
     )
     const horOnObject = horizontalIntersections.length > 0
-    console.log(horizontalIntersections, controlObject.position);
 
     // 如果没有碰到东西才能继续走
     if (!horOnObject) {
