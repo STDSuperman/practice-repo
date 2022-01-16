@@ -37,8 +37,8 @@ export default (fpsContainerRef: RefObject<HTMLDivElement>) => {
   const initCamera = () => {
     const height = fpsContainerRef.current?.clientHeight || 100
     const width = fpsContainerRef.current?.clientWidth || 100
-    const camera = new THREE.PerspectiveCamera(100, width / height, 0.1, 10000)
-    camera.position.set(0, 0, 0)
+    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 10000)
+    camera.position.set(10, 0, 0)
     return camera
   }
 
@@ -77,16 +77,16 @@ export default (fpsContainerRef: RefObject<HTMLDivElement>) => {
     const stats = initStats()
     initLight()
     // initCityModel(fpsGroup, camera)
-    const skinFrame = await loadPersonSkin(fpsGroup, camera);
+    // const skinFrame = await loadPersonSkin(fpsGroup, camera);
     renderCoordinate(coordinateGroup)
     // const control = initOrbitControls(camera, render);
 
     const animate = () => {
       const delta = clock.getDelta();
       stats.begin()
-      render?.render(fpsGroup, camera)
+      render?.render(scene, camera)
       frameRender(delta)
-      skinFrame(delta)
+      // skinFrame(delta)
       requestAnimationFrame(animate)
       // control.update();
       stats.end()

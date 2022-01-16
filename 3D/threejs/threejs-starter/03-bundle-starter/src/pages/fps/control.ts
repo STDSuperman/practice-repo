@@ -11,7 +11,7 @@ export const initControl = (
   controlObject.position.y = 100
   controlObject.position.x = 20
   fpsGroup.add(controlObject)
-  // fpsGroup.scale.set(1.5, 1.5, 1.5)
+  // fpsGroup.scale.set(.5, .5, .5)
   return controls
 }
 

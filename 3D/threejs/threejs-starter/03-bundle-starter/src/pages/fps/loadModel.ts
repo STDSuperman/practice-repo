@@ -51,29 +51,44 @@ export const loadCityObj = (scene: THREE.Scene | THREE.Group) => {
   })
 }
 
+
+export interface VanguardModelLoadRes {
+  mixer: THREE.AnimationMixer;
+  model: THREE.Group
+}
 export const loadPersonSkin = async (
   scene: THREE.Scene | THREE.Group,
   camera: THREE.PerspectiveCamera
 ) => {
   const loader = new FBXLoader();//创建一个FBX加载器
-  const modelSet = (): Promise<THREE.AnimationMixer> => {
+  const modelSet = (): Promise<VanguardModelLoadRes> => {
     return new Promise((resolve) => {
-      loader.load("/models/person-skin/remy.fbx", function(obj) {
-        loader.load("/models/person-skin/walk.fbx", (walkObj) => {
-          scene.add(obj)
-          obj.scale.set(0.1, 0.1, 0.1);
-          // 适当平移fbx模型位置
-          const mixer = new THREE.AnimationMixer(obj);
-          const animationAction = mixer.clipAction(walkObj.animations[0])
-          animationAction.play();
-          resolve(mixer);
+      loader.load("/models/person-skin/remy.fbx", function(object) {
+        loader.load("/models/person-skin/walk.fbx", function(samba) {
+          object.scale.set(.1, .1, .1);
+          const mixer = new THREE.AnimationMixer(object);
+          let animationAction = mixer.clipAction(samba.animations[0]);
+          animationAction.loop = THREE.LoopPingPong;
+          // animationAction.play()
+          scene.add(object);
+          resolve({
+            model: object,
+            mixer: mixer
+          });
         })
       })
     })
   }
-
-  const mixer = await modelSet();
+  const { mixer, model } = await modelSet();
   return (delta: number) => {
     mixer.update(delta);
+    model.position.copy(camera.position).add(new THREE.Vector3(0, -35, 3));
+    model.rotation.copy(camera.rotation);
+    // model.rotation.x = 0;
+    // model.rotation.z = 0;
+    model.rotation.y += Math.PI;
+    // const modelRotation = new THREE.Vector3();
+    // modelRotation.copy(camera.getWorldDirection(new THREE.Vector3()))
+    // model.rotation.setFromVector3(modelRotation)
   }
 }
