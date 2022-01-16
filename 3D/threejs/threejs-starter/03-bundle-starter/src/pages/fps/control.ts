@@ -8,7 +8,7 @@ export const initControl = (
 ) => {
   const controls = new PointerLockControls(camera, render.domElement)
   const controlObject = controls.getObject()
-  controlObject.position.y = 100
+  controlObject.position.y = 1000
   controlObject.position.x = 20
   fpsGroup.add(controlObject)
   // fpsGroup.scale.set(.5, .5, .5)
@@ -28,8 +28,8 @@ export const initKeyControl = (
   const velocity = new THREE.Vector3()
   const direction = new THREE.Vector3()
   const rotation = new THREE.Vector3() //当前的相机朝向
-  const upSpeed = 200
-  const speed = 500
+  let upSpeed = 250
+  let speed = 500
   const horizontalRaycaster = new THREE.Raycaster(
     new THREE.Vector3(),
     new THREE.Vector3(),
@@ -65,6 +65,10 @@ export const initKeyControl = (
         canJump = false
         spaceUp = false
         break
+      case 16: // shift
+        speed = 1000;
+        upSpeed = 500;
+        break;
     }
   }
   const onKeyUp = (event: KeyboardEvent) => {
@@ -88,6 +92,10 @@ export const initKeyControl = (
       case 32: // space
         spaceUp = true
         break
+      case 16: // shift
+        speed = 500;
+        upSpeed = 250;
+        break;
     }
   }
   document.addEventListener('keydown', onKeyDown, false)
@@ -160,7 +168,7 @@ export const initKeyControl = (
     // 复制相机的位置
     downRaycaster.ray.origin.copy(controlObject.position)
     //获取相机靠下1的位置
-    // downRaycaster.ray.origin.y -= 10
+    downRaycaster.ray.origin.y -= 20
     //判断是否停留在了立方体上面
     const intersections = downRaycaster.intersectObjects(fpsGroup.children, true)
     const onObject = intersections.length > 0
@@ -178,9 +186,9 @@ export const initKeyControl = (
     control.moveRight(velocity.x * delta);
     controlObject.position.y += velocity.y * delta;
 
-    if (controlObject.position.y < 10) {
+    if (controlObject.position.y < 26) {
       velocity.y = 0
-      controlObject.position.y = 10
+      controlObject.position.y = 26
       canJump = true
     }
   }

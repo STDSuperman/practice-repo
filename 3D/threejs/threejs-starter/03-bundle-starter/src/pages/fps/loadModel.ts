@@ -92,3 +92,47 @@ export const loadPersonSkin = async (
     // model.rotation.setFromVector3(modelRotation)
   }
 }
+
+export const loadUSACity = (
+  scene: THREE.Scene | THREE.Group,
+  camera: THREE.Camera
+) => {
+  const loader = new GLTFLoader().setPath('/models/sing_sing_prison_ossining_new_york_usa/' );
+  loader.load( 'scene.gltf', ( gltf ) => {
+    gltf.scene.scale.set(50, 50, 50)
+    scene.add( gltf.scene );
+  })
+}
+
+export const loadLowPolyCityPack = (
+  scene: THREE.Scene | THREE.Group,
+  camera: THREE.Camera
+) => {
+  const loader = new GLTFLoader().setPath('/models/low-poly-city-pack/' );
+  loader.load( 'scene.gltf', ( gltf ) => {
+    gltf.scene.scale.set(50, 50, 50)
+    scene.add( gltf.scene );
+  })
+}
+
+export const loadDreamHouse = (
+  scene: THREE.Scene | THREE.Group,
+  camera: THREE.Camera
+) => {
+  const loader = new GLTFLoader().setPath('/models/the_dream_house/' );
+  loader.load( 'scene.gltf', ( gltf ) => {
+    gltf.scene.scale.set(40, 40, 40)
+    scene.add( gltf.scene );
+  })
+}
+
+export const loadGrass = (
+  scene: THREE.Scene | THREE.Group,
+  camera: THREE.Camera
+) => {
+  const loader = new GLTFLoader().setPath('/models/grass_usd/' );
+  loader.load( 'scene.gltf', ( gltf ) => {
+    gltf.scene.scale.set(100, 1, 100)
+    scene.add( gltf.scene );
+  })
+}
