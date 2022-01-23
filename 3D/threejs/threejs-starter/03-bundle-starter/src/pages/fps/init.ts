@@ -5,7 +5,14 @@ import Stats from 'stats.js'
 import { renderCoordinate } from '../practice1/render-object'
 import { onWindowResize, normalizeDirection, setRandomColors } from '../../utils'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import { initCityModel, loadPersonSkin, loadUSACity, loadDreamHouse, loadGrass } from './loadModel'
+import {
+  initCityModel,
+  loadPersonSkin,
+  loadUSACity,
+  loadDreamHouse,
+  loadGrass,
+  loadMedievalFantasyBook
+} from './loadModel'
 import { initControl, initKeyControl } from './control'
 import { Sky } from 'three/examples/jsm/objects/Sky';
 
@@ -126,8 +133,9 @@ export default (fpsContainerRef: RefObject<HTMLDivElement>) => {
     // const skinFrame = await loadPersonSkin(fpsGroup, camera);
     renderCoordinate(coordinateGroup)
     // loadUSACity(fpsGroup, camera)
-    loadDreamHouse(fpsGroup, camera)
-    loadGrass(fpsGroup, camera)
+    // loadDreamHouse(fpsGroup, camera)
+    // loadGrass(fpsGroup, camera)
+    const skinFrame = await loadMedievalFantasyBook(fpsGroup, camera)
     // const control = initOrbitControls(camera, render);
 
     const animate = () => {
@@ -135,7 +143,7 @@ export default (fpsContainerRef: RefObject<HTMLDivElement>) => {
       stats.begin()
       render?.render(scene, camera)
       frameRender(delta)
-      // skinFrame(delta)
+      skinFrame(delta)
       requestAnimationFrame(animate)
       // control.update();
       stats.end()

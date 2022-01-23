@@ -136,3 +136,30 @@ export const loadGrass = (
     scene.add( gltf.scene );
   })
 }
+
+export const loadMedievalFantasyBook = async (
+  scene: THREE.Scene | THREE.Group,
+  camera?: THREE.Camera
+) => {
+  const loader = new FBXLoader();//创建一个FBX加载器
+  const modelSet = (): Promise<VanguardModelLoadRes> => {
+    return new Promise((resolve) => {
+      loader.load("/models/medieval-fantasy-book/textures/TEST2.fbx", function(object) {
+        object.scale.set(20, 20, 20);
+        const mixer = new THREE.AnimationMixer(object);
+        let animationAction = mixer.clipAction(object.animations[0]);
+        animationAction.loop = THREE.LoopPingPong;
+        animationAction.play()
+        scene.add(object);
+        resolve({
+          model: object,
+          mixer: mixer
+        });
+      })
+    })
+  }
+  const { mixer, model } = await modelSet();
+  return (delta: number) => {
+    mixer.update(delta);
+  }
+}
