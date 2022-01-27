@@ -1,5 +1,11 @@
 import { PointerLockControls } from 'three/examples/jsm/controls/PointerLockControls'
 import * as THREE from 'three'
+import {
+  defaultForwardSpeed,
+  defaultUpSpeed,
+  shiftUpSpeed,
+  shiftForwardSpeed
+} from './config'
 
 export const initControl = (
   camera: THREE.PerspectiveCamera,
@@ -28,8 +34,8 @@ export const initKeyControl = (
   const velocity = new THREE.Vector3()
   const direction = new THREE.Vector3()
   const rotation = new THREE.Vector3() //当前的相机朝向
-  let upSpeed = 250
-  let speed = 500
+  let upSpeed = defaultUpSpeed;
+  let speed = defaultForwardSpeed
   const horizontalRaycaster = new THREE.Raycaster(
     new THREE.Vector3(),
     new THREE.Vector3(),
@@ -66,8 +72,8 @@ export const initKeyControl = (
         spaceUp = false
         break
       case 16: // shift
-        speed = 1000;
-        upSpeed = 500;
+        speed = shiftForwardSpeed;
+        upSpeed = shiftUpSpeed;
         break;
     }
   }
@@ -93,8 +99,8 @@ export const initKeyControl = (
         spaceUp = true
         break
       case 16: // shift
-        speed = 500;
-        upSpeed = 250;
+        speed = defaultForwardSpeed;
+        upSpeed = defaultUpSpeed;
         break;
     }
   }
