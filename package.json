@@ -1,35 +1,34 @@
 {
-	"name": "practice-repo",
-	"version": "1.0.0",
-	"main": "dist/index.js",
-	"scripts": {
-		"prepare": "husky install",
-		"commit": "git add -A && git-cz",
-		"lint": "eslint .",
-		"lint:fix": "eslint --fix .",
-		"format:fix": "prettier --write .",
-		"husky-pre-commit": "husky set .husky/_/pre-commit 'npm run test'",
-		"husky-commit-msg": "husky set .husky/_/commit-msg 'npm run commitlint --edit $1'",
-		"clean": "rimraf dist" 
-	},
-	"devDependencies": {
-		"@commitlint/cli": "^13.1.0",
-		"@commitlint/config-conventional": "^13.1.0",
-		"commitizen": "^4.2.4",
-		"commitlint-config-cz": "^0.13.2",
-		"cz-conventional-changelog": "^3.3.0",
-		"cz-customizable": "^6.3.0",
-		"eslint": "^7.32.0",
-		"husky": "^7.0.2",
-	  	"prettier": "^2.3.2",
-		"babel-eslint": "^10.1.0",
-	  	"rimraf": "^3.0.2",
-		"eslint-plugin-import": "^2.24.2"
-	},
-	"config": {
-	  "commitizen": {
-		"path": "node_modules/cz-customizable"
-	  }
-	}
+  "name": "practice-repo",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "prepare": "husky install",
+    "commit": "git add -A && git-cz",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format:fix": "prettier --write .",
+    "husky-pre-commit": "husky set .husky/_/pre-commit 'npm run test'",
+    "husky-commit-msg": "husky set .husky/_/commit-msg 'npm run commitlint --edit $1'",
+    "clean": "rimraf dist"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "babel-eslint": "^10.1.0",
+    "commitizen": "^4.2.4",
+    "commitlint-config-cz": "^0.13.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.3.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.24.2",
+    "husky": "^7.0.2",
+    "prettier": "^2.3.2",
+    "rimraf": "^3.0.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
   }
-  
+}
