@@ -8,7 +8,7 @@
 // Requirements
 //------------------------------------------------------------------------------
 
-const rule = require("../../../lib/rules/es-practice"),
+const rule = require("../../../lib/rules/no-console"),
   RuleTester = require("eslint").RuleTester;
 
 
@@ -17,7 +17,7 @@ const rule = require("../../../lib/rules/es-practice"),
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester();
-ruleTester.run("es-practice", rule, {
+ruleTester.run("no-console", rule, {
   valid: [
     {
       code: 'console.info("哈哈")',

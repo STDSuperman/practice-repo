@@ -13,7 +13,7 @@
  */
 module.exports = {
   meta: {
-    type: 'layout', // `problem`, `suggestion`, or `layout`
+    type: 'problem', // `problem`, `suggestion`, or `layout`
     docs: {
       description: "disable console",
       category: "Fill me in",

@@ -1,0 +1,9 @@
+{
+  "name": "test-rule",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "eslint ./index.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

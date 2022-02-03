@@ -16,7 +16,16 @@ const requireIndex = require("requireindex");
 
 
 // import all rules in lib/rules
-module.exports.rules = requireIndex(__dirname + "/rules");
+const rules = requireIndex(__dirname + "/rules");
 
-
-
+module.exports = {
+  rules,
+  configs: {
+    customConfig: {
+      plugins: ["custom-collection"],
+      rules: {
+        "custom-collection/no-console": 2
+      }
+    }
+  }
+}
