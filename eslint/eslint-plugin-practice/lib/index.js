@@ -1,6 +1,6 @@
 /**
- * @fileoverview just for practice
- * @author eslint-plugin-practice
+ * @fileoverview none
+ * @author eslint-practice
  */
 "use strict";
 

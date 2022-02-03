@@ -1,6 +1,6 @@
-# eslint-plugin-practice
+# eslint-plugin-es-practice
 
-just for practice
+none
 
 ## Installation
 
@@ -10,20 +10,20 @@ You'll first need to install [ESLint](https://eslint.org/):
 npm i eslint --save-dev
 ```
 
-Next, install `eslint-plugin-practice`:
+Next, install `eslint-plugin-es-practice`:
 
 ```sh
-npm install eslint-plugin-practice --save-dev
+npm install eslint-plugin-es-practice --save-dev
 ```
 
 ## Usage
 
-Add `practice` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
+Add `es-practice` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix:
 
 ```json
 {
     "plugins": [
-        "practice"
+        "es-practice"
     ]
 }
 ```
@@ -34,7 +34,7 @@ Then configure the rules you want to use under the rules section.
 ```json
 {
     "rules": {
-        "practice/rule-name": 2
+        "es-practice/rule-name": 2
     }
 }
 ```

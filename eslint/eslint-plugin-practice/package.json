@@ -1,13 +1,13 @@
 {
-  "name": "eslint-plugin-practice",
+  "name": "eslint-plugin-es-practice",
   "version": "0.0.0",
-  "description": "just for practice",
+  "description": "none",
   "keywords": [
     "eslint",
     "eslintplugin",
     "eslint-plugin"
   ],
-  "author": "eslint-plugin-practice",
+  "author": "eslint-practice",
   "main": "lib/index.js",
   "scripts": {
     "lint": "eslint .",
