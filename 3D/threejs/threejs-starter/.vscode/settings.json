@@ -1,3 +1,4 @@
 {
-  "commentTranslate.multiLineMerge": true
+  "commentTranslate.multiLineMerge": true,
+  "livePreview.defaultPreviewPath": "/02-fps-starter/index.html"
 }
