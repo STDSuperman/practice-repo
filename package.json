@@ -30,5 +30,11 @@
     "commitizen": {
       "path": "node_modules/cz-customizable"
     }
+  },
+  "dependencies": {
+    "apollo-server-core": "^3.6.4",
+    "apollo-server-express": "^3.6.4",
+    "express": "^4.17.3",
+    "graphql": "^16.3.0"
   }
 }
