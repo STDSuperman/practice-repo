@@ -31,14 +31,5 @@
       "path": "node_modules/cz-customizable"
     }
   },
-<<<<<<< HEAD
-  "dependencies": {
-    "apollo-server-core": "^3.6.4",
-    "apollo-server-express": "^3.6.4",
-    "express": "^4.17.3",
-    "graphql": "^16.3.0"
-  }
-=======
   "dependencies": {}
->>>>>>> 14b8c159e1b018c0471e465b5fb84e0ed6c48921
 }
