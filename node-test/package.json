@@ -10,8 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "imagemin": "^7.0.1",
-    "imagemin-mozjpeg": "^9.0.0",
+    "chalk-animation": "^2.0.2",
     "koa": "^2.13.1",
     "koa-static": "^5.0.0"
   }
