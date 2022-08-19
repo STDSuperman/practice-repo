@@ -23,7 +23,7 @@ export const initCamera = (renderDom: HTMLElement) => {
   return camera;
 }
 
-export const initLight = (scene: THREE.Scene) => {
+export const initLight = () => {
   // const light = new THREE.DirectionalLight(0xff0220, 1)
   // light.position.set(100, 100, 200);
   // scene.add(light);
@@ -32,7 +32,7 @@ export const initLight = (scene: THREE.Scene) => {
   // scene.add(light);
   const light2 = new THREE.PointLight(0xffffff);
   light2.position.set(0, 50, 0);
-  scene.add(light2);
+  return light2;
 }
 
 export const initStats = () => {
@@ -50,4 +50,57 @@ export const autoResize = (camera: THREE.PerspectiveCamera, renderer: THREE.WebG
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio)
   })
+}
+
+export const initAxesHelper = (scene: THREE.Scene | THREE.Group,) => {
+  const axesHelper = new THREE.AxesHelper(20);
+  scene.add(axesHelper);
+
+  const axesHelperMarkText = document.getElementById('axesHelperMarkText');
+  if (!axesHelperMarkText) {
+    const markFragmentHtml = `
+    <div
+      style="position: absolute; top: 0; left: 50%; display: flex; width: 200px; justify-content: space-around;transform: translateX(-50%)"
+      id="axesHelperMarkText"
+    >
+      <div>红色：x</div>
+      <div>绿色：y</div>
+      <div>蓝色：z</div>
+    </div>
+    `
+    const div = document.createElement('div');
+    div.innerHTML = markFragmentHtml;
+    document.body.appendChild(div);
+  } 
+
+  return axesHelper;
+}
+
+export const renderThree = (
+  scene: THREE.Scene | THREE.Group,
+  renderDom: HTMLElement,
+) => {
+  const renderer = initRenderer(renderDom);
+  const camera = initCamera(renderDom);
+  const light = initLight();
+  const stats = initStats();
+  autoResize(camera, renderer);
+  scene.add(light);
+
+  const animate = (frameRender?: () => void) => {
+    stats.begin();
+    frameRender?.();
+    renderer.render(scene, camera);
+    stats.end();
+    requestAnimationFrame(() => {
+      animate(frameRender);
+    });
+  }
+  return {
+    animate,
+    camera,
+    light,
+    stats,
+    renderer,
+  }
 }
