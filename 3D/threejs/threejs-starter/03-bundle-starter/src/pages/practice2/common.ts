@@ -1,6 +1,20 @@
 import * as THREE from 'three';
 import Stats from 'stats.js'
 
+export interface IDefaultEleConfig {
+  light?: boolean;
+  autoResize?: boolean;
+  stats?: boolean;
+}
+
+export interface IRenderThreeExportObj {
+  light?: THREE.Light;
+  animate: (frameRender?: () => void) => void;
+  camera: THREE.Camera;
+  stats?: Stats;
+  renderer: THREE.WebGLRenderer;
+}
+
 export const initRenderer = (renderDom: HTMLElement) => {
   const width = renderDom?.clientWidth || 100;
   const height = renderDom?.clientHeight || 100;
@@ -30,7 +44,7 @@ export const initLight = () => {
   // const light =  new THREE.AmbientLight( 0x404040 );
   // light.position.set(0, 50, 0);
   // scene.add(light);
-  const light2 = new THREE.PointLight(0xffffff);
+  const light2 = new THREE.PointLight(0xffffff, 0.5);
   light2.position.set(0, 50, 0);
   return light2;
 }
@@ -77,30 +91,47 @@ export const initAxesHelper = (scene: THREE.Scene | THREE.Group,) => {
 }
 
 export const renderThree = (
-  scene: THREE.Scene | THREE.Group,
   renderDom: HTMLElement,
+  scene: THREE.Scene | THREE.Group,
+  defaultEleConfig?: IDefaultEleConfig
 ) => {
+  const eleConfig = Object.assign({
+    light: true,
+    stats: true,
+    autoResize: true,
+  }, defaultEleConfig || {})
+
   const renderer = initRenderer(renderDom);
   const camera = initCamera(renderDom);
-  const light = initLight();
-  const stats = initStats();
-  autoResize(camera, renderer);
-  scene.add(light);
+  let stats: Stats;
 
   const animate = (frameRender?: () => void) => {
-    stats.begin();
+    stats?.begin();
     frameRender?.();
     renderer.render(scene, camera);
-    stats.end();
+    stats?.end();
     requestAnimationFrame(() => {
       animate(frameRender);
     });
   }
-  return {
-    animate,
-    camera,
-    light,
-    stats,
+
+  const exportObj: IRenderThreeExportObj = {
     renderer,
+    camera,
+    animate,
+  };
+
+  if (eleConfig.light) {
+    const light = initLight();
+    scene.add(light);
+    exportObj.light = light;
   }
+
+  if (eleConfig.stats) {
+    const stats = initStats();
+    exportObj.stats = stats;
+  }
+  autoResize(camera, renderer);
+
+  return exportObj;
 }

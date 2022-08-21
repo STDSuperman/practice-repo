@@ -14,7 +14,7 @@ export default () => {
       camera,
       renderer,
       animate,
-    } = renderThree(scene, renderDom.current!);
+    } = renderThree(renderDom.current!, scene);
 
     const control = new OrbitControls(camera, renderer.domElement);
     control.enableDamping = true;
