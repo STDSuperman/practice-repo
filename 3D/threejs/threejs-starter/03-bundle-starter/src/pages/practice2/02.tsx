@@ -4,6 +4,9 @@ import * as THREE from 'three';
 import './index.less'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
+/**
+ * 实现花样透明随机玻璃面
+ */
 export default () => {
   const renderDom = useRef<HTMLDivElement>(null);
 

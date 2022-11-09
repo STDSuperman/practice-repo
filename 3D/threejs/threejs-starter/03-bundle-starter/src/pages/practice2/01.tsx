@@ -6,6 +6,9 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import gsap from 'gsap'
 import dat from 'dat.gui';
 
+/**
+ * 绘制一个基础的正方体动画
+ */
 export default () => {
   const renderDom = useRef<HTMLDivElement>(null);
 

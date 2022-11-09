@@ -10,6 +10,9 @@ import {
   autoResize
 } from './common';
 
+/**
+ * 通过顶点手绘一个立方体
+ */
 export default () => {
   const renderDom = useRef<HTMLDivElement>(null);
 
