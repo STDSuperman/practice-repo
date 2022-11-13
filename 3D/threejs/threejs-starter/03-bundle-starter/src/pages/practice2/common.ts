@@ -10,7 +10,7 @@ export interface IDefaultEleConfig {
 export interface IRenderThreeExportObj {
   light?: THREE.Light;
   animate: (frameRender?: () => void) => void;
-  camera: THREE.Camera;
+  camera: THREE.PerspectiveCamera;
   stats?: Stats;
   renderer: THREE.WebGLRenderer;
 }

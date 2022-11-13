@@ -1,8 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-import Module from './04';
-=======
-import Module from './阴影';
->>>>>>> 99df79651b490b139263d9951d77d7e671483e5e
+import Module from './顶点复用-材质案例';
 
 export default Module;
