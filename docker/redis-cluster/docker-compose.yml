@@ -1,0 +1,100 @@
+version: '3'
+
+services:
+  redis1:
+    image: 'redis'
+    ports:
+      - '6379:6379'
+      - '16379:16379'
+    volumes:
+      - ./data/node1/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./data/node1:/data
+    privileged: true
+    restart: 'always'
+    sysctls:
+      net.core.somaxconn: 1024
+    command: redis-server /usr/local/etc/redis/redis.conf
+    stdin_open: true
+    tty: true
+
+  redis2:
+    image: 'redis'
+    ports:
+      - '6380:6380'
+      - '16380:16380'
+    volumes:
+      - ./data/node2/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./data/node2:/data
+    privileged: true
+    restart: 'always'
+    sysctls:
+      net.core.somaxconn: 1024
+    command: redis-server /usr/local/etc/redis/redis.conf
+    stdin_open: true
+    tty: true
+
+  redis3:
+    image: 'redis'
+    ports:
+      - '6381:6381'
+      - '16381:16381'
+    volumes:
+      - ./data/node3/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./data/node3:/data
+    privileged: true
+    restart: 'always'
+    sysctls:
+      net.core.somaxconn: 1024
+    command: redis-server /usr/local/etc/redis/redis.conf
+    stdin_open: true
+    tty: true
+
+  redis4:
+    image: 'redis'
+    ports:
+      - '6382:6382'
+      - '16382:16382'
+    volumes:
+      - ./data/node4/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./data/node4:/data
+    privileged: true
+    restart: 'always'
+    sysctls:
+      net.core.somaxconn: 1024
+    command: redis-server /usr/local/etc/redis/redis.conf
+    stdin_open: true
+    tty: true
+
+  redis5:
+    image: 'redis'
+    ports:
+      - '6383:6383'
+      - '16383:16383'
+    volumes:
+      - ./data/node5/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./data/node5:/data
+    privileged: true
+    restart: 'always'
+    sysctls:
+      net.core.somaxconn: 1024
+    command: redis-server /usr/local/etc/redis/redis.conf
+    stdin_open: true
+    tty: true
+
+  redis6:
+    image: 'redis'
+    ports:
+      - '6384:6384'
+      - '16384:16384'
+    volumes:
+      - ./data/node6/redis.conf:/usr/local/etc/redis/redis.conf
+      - ./data/node6:/data
+    privileged: true
+    restart: 'always'
+    sysctls:
+      net.core.somaxconn: 1024
+    command: redis-server /usr/local/etc/redis/redis.conf
+    stdin_open: true
+    tty: true
+
+# redis-cli -a 1234 --cluster create 192.168.1.102:6379 192.168.1.102:6380 192.168.1.102:6381 192.168.1.102:6382 192.168.1.102:6383 192.168.1.102:6384 --cluster-replicas 1
